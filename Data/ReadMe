@@ -1,0 +1,39 @@
+ReadMe:
+
+Each volume data set "V_ptX.mat" contains two data sets. These data are generated using the algorithm described in Appendix A, and transformed to grid. Owing to the inefficient solution method, the raw data are large and thus not included here; for access to the raw data and codes used to generate them, contact aleey [at] bas [dot] ac [dot] uk or Vella [at] maths [dot] ox [dot] ac [dot] UK (emails addresses correct as of October 2020)
+
+Set 1 contains:
+nu1       :  Array of unique nu values, size 1 x N
+xu1       :  Array of unique xu values, size M x 1
+lambda_e1 :  Array of lambda_e values, taken at the xu1, nu1 values, size M  x N
+Use this data set to produce regime diagrams in (x_+, \nu) space with colours corresponding to \lambda_e.
+
+Note that the maximum value of hysteresis is 0.3. Any value above that will appear as a nan
+
+Set 2 contains:
+nu2      :  Array of unique nu values, size 1 x N'
+lambda_e2;  Array of unique \lambda_e values, size M' x 1
+xu2      :  Array of x_+ values, taken at the nu2, lambda_e2 values, size M' x N'
+Use this data set to produce regime diagrams in (\lambda_e, \nu) space with colours corresponding to x_+.
+
+Note that both data sets contain some superfluous values with xu < V. These can be removed manually, or by controlling the axis of the plot.
+
+For V = 0.2, this file (V_pt2.mat) also contains two variables called hysparmax_marginal and nu_marginal, describing the location of the sigma = 0 contour in (\lambda, \nu) space. 
+
+%%%%%%%%
+This folder also contains a file 'small_nu_solvability_values.mat' which contains a 7 x 4 cell structure named dataR1. Each column of this cell structure corresponds to a different value of \lambdae as follows: 0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5. Each column of dataR1 contains:
+nu_ : an array of nu values
+V_  : an array of V values
+S1  : a matrix of values of the solvability condition (S in the manuscript) corresponding to equilibria at the nu, V values in nu_, V_. (note that nan entries in S1 indicate no equilibrium at the corresponding (nu, V) pair. 
+
+
+%%%%%%% 
+Example_solutions_different_lambda contains numerical solutions used in figure 2. 
+Cell structure with rows corresponding to \lambda = 0, 0.02, and 0.04 and columns as follows:
+1: tout - time t
+2: xu - x_+
+3: xl - x_-
+4: h  - solution at x co-ordinates
+5: x  - x co-ordinates of drop region
+6: theta_l - theta_-
+These solutions are generate by running the 'master' code with hysparmax = 0.00, 0.02 and 0.04
