@@ -36,4 +36,5 @@ Cell structure with rows corresponding to \lambda = 0, 0.02, and 0.04 and column
 4: h  - solution at x co-ordinates
 5: x  - x co-ordinates of drop region
 6: theta_l - theta_-
+7: theta_a
 These solutions are generate by running the 'master' code with hysparmax = 0.00, 0.02 and 0.04
