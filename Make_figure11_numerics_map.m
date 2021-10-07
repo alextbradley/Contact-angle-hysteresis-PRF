@@ -10,7 +10,8 @@ figure(1); clf; hold on
 
 %load data 
 load("numerics_comparison_data.mat", 'hysparmax_out', 'nu_out', 'xu0_escape');
-
+nu_out = nu_out(1:2:end);
+xu0_escape = xu0_escape(:, 1:2:end); %sub sample
 %reshape data
 hysparmax_out_long = repmat(hysparmax_out, [length(nu_out),1]);
 hysparmax_out_long  = hysparmax_out_long(:);

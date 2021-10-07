@@ -16,15 +16,28 @@ colormap parula
 for i = 1:4
     load(fnames(i), 'nu1', 'xu1', 'lambda_e1', 'V');
     figure(i); clf; hold on
+    nu1m = repmat(nu1, [length(xu1),1]);
     %saturate anything above 0.1
-    lambda_e1(lambda_e1 > 0.1) = 0.1;
-    contourf(xu1, nu1,lambda_e1', linspace(0,0.1,1000), 'linestyle', 'none') 
+    lambda_e1(lambda_e1 > 0.3) = 0.3;
+    lambda_e1(lambda_e1 < 1e-3) = 1e-3;
+    lambda_e1(isnan(lambda_e1) & (nu1m < 1)) = 1e-3;
+
+    contourf(xu1, nu1,log10(lambda_e1)', linspace(-3,log10(0.3),100), 'linestyle', 'none') 
     box on
-    xlim([V+0.01, 1]) %data to the left of V is meaningless, remove in this way 
+    xlim([V+0.05, 1]) %data to the left of V is meaningless, remove in this way 
     ylim([0, 10])
     c = colorbar;
-    %c.Ticks = [0, 0.05,0.1];
-      c.Limits = [0,0.1];
-     c.TickLabels{end} = '> 0.1'; %change final tick value
+    c.Ticks = [-3,-2,-1];
+      c.Limits = [-3,-0.5];
+      c.TickLabels{1} = '< 10^{-3}';
+      c.TickLabels{2} =  '10^{-2}';
+      c.TickLabels{3} =  '10^{-1}';
+     
+      %add contours
+      hold on;
+      for lev = log10([0.02,0.05, 0.1])
+                c = contour(xu1, nu1,log10(lambda_e1)',[lev, lev],'k', 'linewidth', 2);
+     
+      end
 
 end

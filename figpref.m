@@ -77,9 +77,9 @@ function figpref(varargin)
    case 4
     disp('** This is intended to create figures which will use');
     disp('   the full width of a page in LaTeX.');
-    set(0, 'defaultaxesfontsize', 20);
+    set(0, 'defaultaxesfontsize', 14);
     set(0, 'defaultaxeslinewidth', 2);
-    set(0, 'defaultlinelinewidth', 2);
+    set(0, 'defaultlinelinewidth', 1.5);
     set(0, 'defaultpatchlinewidth', 0.7); 
  
    case 9

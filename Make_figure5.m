@@ -22,10 +22,10 @@ lambdas = [0, 0.02, 0.04];
 load('Example_solutions_different_lambda', 'sols')
 
 %initilize plots
-for i = 1:5
-    figure(i); clf; hold on
-end
-
+% for i = 1:5
+%     figure(i); clf; hold on
+% end
+figure(1);clf;
 for i = 1:3
     
     %extract data from cell structure
@@ -41,7 +41,7 @@ for i = 1:3
     end
     
     %plot 1: positive displacement
-    figure(1);
+    subplot(4,1,1); hold on
     plot(tout, xu - xu(1), 'k', 'color', colmap(i,:), 'linewidth',3);
     plot(tout, xl - xl(1), 'k--','color', colmap(i,:), 'linewidth', 3);
     
@@ -49,12 +49,14 @@ for i = 1:3
     set(gca, 'YScale', 'log')
     xlim([1e-4, 5])
     ylim([1e-4, 1e-1])
-    fig = gcf; fig.Position(3:4) = [985 211];
+    %fig = gcf; fig.Position(3:4) = [985 211];
     box on
-    xticks([1e-4, 1e-2, 1])
+    %xticks([1e-4, 1e-2, 1])
+    xticks([]);
+
     
     %Plot 2 negative meniscus displacement
-    figure(2);
+    subplot(4,1,2); hold on
     idx1 = ((xu - xu(1))<0); %where is xu < xu0
     idx2 = ((xl - xl(1))<0); %where is xl < xl0?
     plot(tout(idx1), xu(idx1) - xu0, 'color', colmap(i,:), 'linewidth', 3)
@@ -64,9 +66,11 @@ for i = 1:3
     set(gca, 'YScale', 'log')
     xlim([1e-4, 5])
     ylim([-1e-2, -1e-4])
-    fig = gcf; fig.Position(3:4) = [985 211];
+    %fig = gcf; fig.Position(3:4) = [985 211];
     box on
-    xticks([1e-4, 1e-2, 1])
+    %xticks([1e-4, 1e-2, 1])
+    xticks([]);
+
     
     %Plot 3: pressure 
     ht = (-5*h(:, end-3) + 21*h(:,end-2) - 35*h(:,end-1) + 35*h(:, end))/16; %one sided approx to determine h at x = x_{\pm}
@@ -74,36 +78,38 @@ for i = 1:3
     p_plus = -nu*cosd(theta_a)./ht;
     p_minus = -nu*cosd(theta_l)./hb;
     
-    figure(3);
+    subplot(4,1,3); hold on
     plot(tout, p_plus/nu /cosd(theta_a), 'color', colmap(i, :), 'linewidth', 3);
     plot(tout, p_minus/nu / cosd(theta_a),'--', 'color', colmap(i, :), 'linewidth', 3);
     set(gca, 'XScale', 'log')
     xlim([1e-4, 5])
     ylim([-1.1, -1])
-    fig = gcf; fig.Position(3:4) = [985 211];
+    %fig = gcf; fig.Position(3:4) = [985 211];
     box on
-    xticks([1e-4, 1e-2, 1])
+    %xticks([1e-4, 1e-2, 1])
+    xticks([]);
     
     %Plot 4: contact angle asymmetry
-    figure(4)
+    subplot(4,1,4); hold on
     plot([1e-4, 5], lambdas(i)*[1,1], '--', 'color', colmap(i,:)); %dashed lines for lambda
     plot(tout, cosd(theta_l)/cosd(theta_a) -1 , 'color', colmap(i,:), 'linewidth', 3);
     set(gca, 'XScale', 'log')
     xlim([1e-4, 5])
     ylim([0, 0.05])
-    fig = gcf; fig.Position(3:4) = [985 211];
+    %fig = gcf; fig.Position(3:4) = [985 211];
     box on
     xticks([1e-4, 1e-2, 1])
+  
     
-    %Plot 5: ratio of meniscus widths
-    figure(5); 
-    plot(tout, hb./ht, 'color', colmap(i,:), 'linewidth', 3);
-    ylim([1,1.1])
-    set(gca, 'XScale', 'log')
-    xlim([1e-4, 5])
-    fig = gcf; fig.Position(3:4) = [985 211];
-    box on
-    xticks([1e-4, 1e-2, 1])
+%     %Plot 5: ratio of meniscus widths
+%     figure(5); 
+%     plot(tout, hb./ht, 'color', colmap(i,:), 'linewidth', 3);
+%     ylim([1,1.1])
+%     set(gca, 'XScale', 'log')
+%     xlim([1e-4, 5])
+%     fig = gcf; fig.Position(3:4) = [985 211];
+%     box on
+%     xticks([1e-4, 1e-2, 1])
 
 end
-
+fig = gcf; fig.Position(3:4) = [745 745];

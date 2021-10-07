@@ -28,7 +28,7 @@ plot(-v_receding*10, theta_receding_dynamic,'o', 'color',  colors(4,:))
 %tidy up
 box on
 xlim([-30, 30]);
-xlabel('$\dot{x}_+$~ ($\mu \mathrm{m~s}^{-1}$)', 'interpreter', 'latex') 
+xlabel('$\dot{x}_2$~ ($\mu \mathrm{m~s}^{-1}$)', 'interpreter', 'latex') 
 ylabel('$\theta_{a,r}$ (degrees)', 'interpreter', 'latex')
 txta = text(-40, 80, '(a)', 'interpreter', 'latex', 'FontSize', 14);
 txtadv = text(-20, 68.5, '$\theta_a = 70.5{}^\circ$', 'FontSize', 12, 'interpreter', 'latex');
@@ -52,11 +52,5 @@ xlabel('$\theta_a - \theta_r$ (degrees)', 'interpreter', 'latex')
 ylabel('$\lambda_{\max}$', 'interpreter', 'latex')
 txtb = text(-9, 0.5, '(b)', 'interpreter', 'latex', 'FontSize', 14);
 txt = text(8, 0.47, '$\theta_r =$', 'interpreter', 'latex', 'FontSize', 12);
-txt45 = text(13, 0.47, '$45^\circ$', 'interpreter', 'latex', 'FontSize', 12, 'color', colors(1,:));
-txt30 = text(21, 0.47, '$30^\circ$', 'interpreter', 'latex', 'FontSize', 12, 'color', colors(2,:));
-txt15 = text(31, 0.47, '$15^\circ$', 'interpreter', 'latex', 'FontSize', 12, 'color', colors(3,:));
-txt0 = text(45, 0.47, '$0^\circ$', 'interpreter', 'latex', 'FontSize', 12, 'color', colors(4,:));
+txt45 = 
 
-fig = gcf; 
-fig.Position(3:4) = [1250, 340];
-shg
