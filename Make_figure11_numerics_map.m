@@ -43,7 +43,7 @@ end
 %add the prediction for x_- = 0
 lambda_e = linspace(0,1);
 nu = 8/V^4 *(lambda_e)./(lambda_e+1).^2 .*((3*lambda_e+5)./(5*lambda_e + 5)).^4;
-plot(lambda_e, nu, 'color','m', 'linewidth', 4);
+%plot(lambda_e, nu,'--', 'color','k', 'linewidth', 4);
 
 %Add the numerics data
 scatter(hysparmax_out_long(idx_not_always_trapped), nu_out_long(idx_not_always_trapped),...
