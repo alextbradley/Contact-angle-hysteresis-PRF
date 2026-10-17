@@ -20,7 +20,7 @@ for i = 1:length(hysparmax_out)
         
         %check whether it escapes when close to the base
         xu0 = V + 0.01;
-        [vout, tout, t_events_functions, ispinned, istouch] = run_droplet(nu,hysparmax, theta_r, V, xu0,N, tend);
+        [vout, tout, t_events_functions, ispinned, istouch] = run_droplet(nu,hysparmax, theta_r, V, xu0,N, tend, logout);
         
         if istouch == 2 %droplet was trapped, so perform the bisection
             fprintf('Droplet is trapped near base, so performing bisection \n')
@@ -33,7 +33,7 @@ for i = 1:length(hysparmax_out)
                 
                 
                 %perform the integration
-                [~, ~, ~, ~, istouch] = run_droplet(nu,hysparmax, theta_r, V, xu0_guess,N, tend);
+                [~, ~, ~, ~, istouch] = run_droplet(nu,hysparmax, theta_r, V, xu0_guess,N, tend, logout);
                 
                 %update bounds accordingly
                 if istouch == 2 %droplet was trapped: update lower bound
@@ -62,7 +62,7 @@ for i = 1:length(hysparmax_out)
             
         elseif istouch == 5 %escaped even at this value, so say always escapes
             fprintf('Droplet always escapes with V = %.2f, lambda_max = %.2f, nu = %.2f', V, hysparmax, nu)
-            xu0_escape = -1; %set to -1 to identify
+            xu0_escape(i,j) = -1; %set current parameter combination to -1
             
         else
             error('Initial guess did not terminate with droplet trapped or droplet reaching free end')
@@ -71,6 +71,6 @@ for i = 1:length(hysparmax_out)
     end
 end
 
-save('Data/numerics_comparison_data.mat', 'hysparmax_out', 'nu_out', 'V','xu0_escape')
+save('Data/numerics_comparison_data_regenerated.mat', 'hysparmax_out', 'nu_out', 'V','xu0_escape')
 
 

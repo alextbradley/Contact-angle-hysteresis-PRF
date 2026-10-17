@@ -1,0 +1,23 @@
+name: Figure 11 generator regression
+
+on:
+  push:
+    branches: [fix/fig11-regeneration]
+    paths:
+      - 'Generate_numerics_data_Fig11.m'
+      - 'matlab_tests/**'
+      - '.github/workflows/fig11-generator.yml'
+  workflow_dispatch:
+
+jobs:
+  synthetic-generator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GNU Octave
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y octave
+      - name: Test all 55 Figure 11 grid cases (stubbed solver)
+        run: octave --quiet --no-gui --eval "run('matlab_tests/test_fig11_generator.m')"
